@@ -1,0 +1,24 @@
+#Mon Feb 18 11:48:41 PST 2019
+
+#waifu2xstuff
+waifu2xCaffeCUIDir=C:\\Users\\windwoz\\Desktop\\waifu2x-caffe\\waifu2x-caffe-cui.exe
+
+#file locations
+workspace=C:\\Users\\windwoz\\Videos\\kon\\workspace\\
+fileDir=C:\\Users\\windwoz\\Videos\\kon\\kon.mp4
+frameRate=12
+
+timeFrame=00:07:23
+duration=00:00:10
+audioLayer=0:1
+dandere2xCppDir=C:\\Users\\windwoz\\Desktop\\firstrun\\danderecppmodule.exe
+
+#customization
+blockSize=30
+tolerance=15
+stepSize=8
+noiseLevel=3
+processType=cudnn
+
+#ignore this if ur on windows
+dandereDir=/home/linux/Documents/waifu2x/dandere.lua

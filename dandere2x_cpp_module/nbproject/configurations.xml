@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>Image/Block.h</itemPath>
+      <itemPath>Image/CImage/CImage.h</itemPath>
+      <itemPath>Image/CImage/CImageException.h</itemPath>
+      <itemPath>Image/CImage/CImageUtils.h</itemPath>
+      <itemPath>Image/CImage/CImg.h</itemPath>
+      <itemPath>Image/DiamondSearch.h</itemPath>
+      <itemPath>Image/DifferenceBlocks.h</itemPath>
+      <itemPath>Driver.h</itemPath>
+      <itemPath>Difference/Inversion.h</itemPath>
+      <itemPath>MemoryLeakChecker.h</itemPath>
+      <itemPath>DandereUtil/Menu.h</itemPath>
+      <itemPath>Difference/PDifference.h</itemPath>
+      <itemPath>Merge/PMerge.h</itemPath>
+      <itemPath>DandereUtil/PreSetup.h</itemPath>
+      <itemPath>DandereUtils/Seperator.h</itemPath>
+      <itemPath>DandereUtil/Settings.h</itemPath>
+      <itemPath>Image/VectorDisplacement.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+    <itemPath>Image/CImage/CImage_readme</itemPath>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <standard>10</standard>
+        </cTool>
+        <ccTool>
+          <developmentMode>6</developmentMode>
+          <standard>11</standard>
+        </ccTool>
+        <linkerTool>
+          <linkerLibItems>
+            <linkerOptionItem>-lX11 -lpthread</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="DandereUtil/Menu.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DandereUtil/PreSetup.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DandereUtil/Settings.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DandereUtils/Seperator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Difference/Inversion.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Difference/PDifference.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Driver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Image/CImage/CImageException.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Image/CImage/CImage_readme" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MemoryLeakChecker.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Merge/PMerge.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+      <item path="DandereUtil/Menu.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DandereUtil/PreSetup.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DandereUtil/Settings.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="DandereUtils/Seperator.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Difference/Inversion.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Difference/PDifference.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Driver.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Image/Block.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Image/CImage/CImage.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Image/CImage/CImageException.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Image/CImage/CImageUtils.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Image/CImage/CImage_readme" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Image/CImage/CImg.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Image/DiamondSearch.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Image/DifferenceBlocks.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Image/VectorDisplacement.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="MemoryLeakChecker.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Merge/PMerge.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

@@ -1,0 +1,7 @@
+dandereDir=/home/linux/Documents/waifu2x/dandere.lua
+workspace=C:\Users\windwoz\Pictures\ynn\
+fileDir=C:\Video\yn\yn.mkv
+timeFrame=00:03:30
+duration=00:01:20
+audioLayer=0:1
+dandere2xCppDir=C:\Users\windwoz\eclipse-workspace\dandereprealpharelease\Debug\dandereprealpharelease.exe
