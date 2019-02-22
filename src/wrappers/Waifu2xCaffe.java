@@ -1,16 +1,21 @@
-package wrappers;/*
+package wrappers;/**
 A rather peculiar class. So Waifu2x-Caffee lacks two stuff that my version of Dandere.lua (my modified waifu2x.lua)
-file lacks: 1) ability to scale files in a specific order, 2)  and ability to scale files that don't exist yet.
+file has: 1) ability to scale files in a specific order, 2)  and ability to scale files that don't exist yet.(it should
+ wait until the file exists).
 
 1) To combat the first, waifu2x-caffee can read files in lexiographic order, hence why the file names
 to be fed into Waifu2xCaffee are in lexigraphic orderings.
 
-2) Waiuf2x-caffee can only scale what's currently in a folder, not files that don't exist yet. The way
-we get around this is by having the 'output' folder become a buffer in a sense, and then signaling waifu2x-caffee
+2) Waiuf2x-caffee can only scale what's currently in a folder, not files that don't exist yet. Furtheremore,
+ it doesn't know what images have been upscaled already, and will reupscale an image if it's already in the ouput folder.
+ The way we get around this is by having the 'output' folder become a buffer in a sense, and then signaling waifu2x-caffee
 to upscale all the images in the 'output' folder, as it can only upscale a folder, not a list of files.
 Once it's all upscaled, do a quick check of what got upscaled, delete them from the outputs Folder,
- then signal the 'upscaleFolder' command in waifu2x-caffee
- */
+ then signal the 'upscaleFolder' command in waifu2x-caffee to start the process again, upscaling all the images
+ in the 'outputs' folder at a given time.
+
+
+ **/
 
 import dandere2x.Utilities.DandereUtils;
 
@@ -77,12 +82,18 @@ public class Waifu2xCaffe {
         }
     }
 
+
     public void upscale() {
         int scaledCount = 0;
         shutdownHook();
 
         String upscaleCommand = waifu2xCaffeDir + " -i " + outputDir + " -p" + setting + " -n " + noiseLevel + " -s " + scaleFactor + " -o " + upscaledDir;
-        while (scaledCount < frameCount - 4) {
+
+
+        /**
+         * We keep track of how many frames are removed with 'scaledCount', and exit when we're done.
+         */
+        while (scaledCount < frameCount - 1) { //todo im being real chief, idk why it's -1 right here.
             Runtime run = Runtime.getRuntime();
 
             try {
@@ -91,10 +102,20 @@ public class Waifu2xCaffe {
                 e.printStackTrace();
             }
 
+            /**
+             * While waifu2x-caffee is upscaling the current batch of images, keep waiting
+             */
             synchronized (waifu2xProc) {
                 while (waifu2xProc.isAlive()) {
                 }
             }
+
+            /**
+             * Waifu2x-Caffee will niavely upscale everything in a folder. To mitigate this, we upscale images
+             * in batches, in which at a given moment, create a list of all the images in 'outputs', upscale them
+             * (the previous command), and now here we delete the ones that upscaled, so the new batch
+             * of upscaled images won't be a part of the next batch.
+             */
 
             for (int x = 0; x < upscaledFrames.size(); x++) {
                 File tmpDir = new File(upscaledDir + "output_" + DandereUtils.getLexiconValue(lexiConstant, upscaledFrames.get(x)) + ".png");

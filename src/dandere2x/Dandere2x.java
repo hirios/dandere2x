@@ -38,6 +38,7 @@ public class Dandere2x {
     private String pframe_dataDir;
     private String debugDir;
     private String logDir;
+
     //custom but relevent settings
     private String noiseLevel;
     private String processType;
@@ -66,21 +67,26 @@ public class Dandere2x {
             // load a properties file
             prop.load(input);
 
-            // get the property value and print it out
+            //directories
             this.dandereDir = prop.getProperty("dandereDir");
             this.workspace = prop.getProperty("workspace");
             this.fileDir = prop.getProperty("fileDir");
+            this.dandere2xCppDir = prop.getProperty("dandere2xCppDir");
+            this.waifu2xCaffeCUIDir = prop.getProperty("waifu2xCaffeCUIDir");
+
+            //session settings
             this.timeFrame = prop.getProperty("timeFrame");
             this.duration = prop.getProperty("duration");
             this.audioLayer = prop.getProperty("audioLayer");
-            this.dandere2xCppDir = prop.getProperty("dandere2xCppDir");
+            this.frameRate = Integer.parseInt(prop.getProperty("frameRate"));
+
+
+            //custom settings
             this.blockSize = Integer.parseInt(prop.getProperty("blockSize"));
             this.stepSize = Integer.parseInt(prop.getProperty("stepSize"));
             this.tolerance = Double.parseDouble(prop.getProperty("tolerance"));
-            this.waifu2xCaffeCUIDir = prop.getProperty("waifu2xCaffeCUIDir");
             this.noiseLevel = prop.getProperty("noiseLevel");
             this.processType = prop.getProperty("processType");
-            this.frameRate = Integer.parseInt(prop.getProperty("frameRate"));
             this.bleed = Integer.parseInt(prop.getProperty("bleed"));
 
         } catch (IOException ex) {
@@ -127,12 +133,6 @@ public class Dandere2x {
 
         log.println("starting threaded processes");
         startThreadedProcesses();
-//        if (DandereUtils.isLinux()) {
-//            startThreadedProcessesLinux();
-//        } else {
-//            startThreadedProcessesWindows();
-//        }
-
     }
 
 
@@ -225,6 +225,12 @@ public class Dandere2x {
 
 
         log.println("starting threaded processes...");
+
+
+        /**
+         * IF we're on linux, create the script for the user to run. The process builder command
+         * to start waifu2x-cpp is also different than that of windows.
+         */
         if (DandereUtils.isLinux()) {
             log.println("using linux...");
             dandere2xPB = new ProcessBuilder(dandere2xCppDir,
@@ -259,6 +265,12 @@ public class Dandere2x {
         log.println("starting inversion thread...");
         inversionThread.start();
 
+
+        /**
+         * If we're on windows, use the waifu2x-caffe wrapper, upscale the first scene,
+         * then start a process to continiously upscale images using waifu2x-caffee. Then, wait for this process
+         * to finish.
+         */
         if (!DandereUtils.isLinux()) {
             log.println("upscaling frame1");
 

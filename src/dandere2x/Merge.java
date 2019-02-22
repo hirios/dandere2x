@@ -15,12 +15,12 @@ import static java.lang.System.exit;
 
 public class Merge implements Runnable {
 
-    public int blockSize;
-    public int bleed;
-    public String workspace;
-    public int frameCount;
-    public int lexiConstant = 6;
-    public PrintStream log;
+    private int blockSize;
+    private int bleed;
+    private String workspace;
+    private int frameCount;
+    private int lexiConstant = 6;
+    private PrintStream log;
 
     public Merge(int blockSize, int bleed, String workspace, int frameCount) {
         this.blockSize = blockSize;
@@ -36,14 +36,23 @@ public class Merge implements Runnable {
     }
 
 
-    /*
-    There's a 'base' image in which all merged photos are derived from, even if all the pixels
-    are eventually overwritten. This is similiar to the genisis block in bitcoin.
-
-    Using the information from inversion and pdifferences, reconstruct the 4k image.
+    /**
+     * The first upscaled frame can be seen as a degenerate frame to an extent, it stands on it's own,
+     * while all preceding frames are derived from previous frames.
+     *
+     * To articulate, frame2, frame3, and frame4 may have pieces of frame1 in it. Furthermore, it's possible
+     * for frame 1200 to have a piece of frame1 in it, so frame1 needs to be seen as different.
+     *
+     * We wait for 'upscaled' differences to be outputed by waifu2x to be stitched over
+     * the previous frame. We apply the neccecary predictive vectors to move parts of the image
+     * around to create the image we want.
+     *
+     * Once we construct an image out of upscaled differences and predictive vectors, this image becomes the base
+     * for the preceding frame.
      */
-
     public void run() {
+
+        //load genesis frame
         Frame base = DandereUtils.listenImage(log, workspace + "merged" + separator + "merged_" + 1 + ".jpg");
 
         for (int x = 1; x < frameCount; x++) {
@@ -55,10 +64,13 @@ public class Merge implements Runnable {
             else
                 inputName = workspace + "upscaled" + separator + "output_" + DandereUtils.getLexiconValue(lexiConstant, x) + ".png";
 
+
+            //load the image 'upscaled differences', and using the data generated, create a new frame with it.
             Frame inversion = DandereUtils.listenImage(log, inputName);
             List<String> listPredictive = DandereUtils.listenText(log, workspace + "pframe_data" + separator + "pframe_" + x + ".txt");
             List<String> listInversion = DandereUtils.listenText(log, workspace + "inversion_data" + separator + "inversion_" + x + ".txt");
 
+            //create and save the new frame using the predictive differences generated, then set the new frame as the new base
             base = createPredictive(x, inversion, base,
                     listPredictive, listInversion,
                     workspace + "merged" + separator + "merged_" + (x + 1) + ".jpg");
@@ -102,6 +114,8 @@ public class Merge implements Runnable {
 
 
         //if it is the case that both lists are empty, then the upscaled image is the new frame.
+        //This is because if we have no predictive vectors, then the image we're looking at
+        //right now has nothing to do with the previous frame
         if (inversionDisplacements.isEmpty() && vectorDisplacements.isEmpty()) {
             log.println("frame is a brand new frame, saving frame");
             out = inversion;
@@ -110,6 +124,8 @@ public class Merge implements Runnable {
         }
 
         //if it is a pFrame but we don't have any inversion items, then simply copy the previous frame.
+        //In other words, if there is no inversionDisplacements, the last scene is identical. (inversion Displacements
+        //are generated when two frames are non identical.
         if (inversionDisplacements.isEmpty() && !vectorDisplacements.isEmpty()) {
             log.println("frame is identical to previous frame");
             base.saveFile(outLocation);

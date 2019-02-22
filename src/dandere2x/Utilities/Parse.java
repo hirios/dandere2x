@@ -32,7 +32,7 @@ public class Parse {
         int width = Integer.parseInt(prop.getProperty("width"));
         int height = Integer.parseInt(prop.getProperty("height"));
 
-        //user settings
+        //user settings //TODO
         int blockSize = Integer.parseInt(prop.getProperty("blockSize"));
         int stepSize = Integer.parseInt(prop.getProperty("stepSize"));
         double tolerance = Double.parseDouble(prop.getProperty("tolerance"));

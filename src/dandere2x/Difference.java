@@ -33,12 +33,22 @@ public class Difference implements Runnable {
         }
     }
 
+
+    /**
+     * Wait for the predictive data and inversion data to exist, then create the 'differences' image
+     * that will be upscaled later by waifu2x.
+     *
+     * We do this by using the raw frames outputed from the video.
+     */
     public void run() {
         for (int x = 1; x < ImageCount; x++) {
             log.println("Frame " + x);
             Frame im2 = DandereUtils.listenImage(log, workspace + "inputs" + separator + "frame" + (x + 1) + ".jpg");
-            saveInversion(x, im2, workspace + "pframe_data" + separator + "pframe_" + x + ".txt",
-                    workspace + "inversion_data" + separator + "inversion_" + x + ".txt",
+            List<String> listPredictive = DandereUtils.listenText(log, workspace + "pframe_data" + separator + "pframe_" + x + ".txt");
+            List<String> listInversion = DandereUtils.listenText(log, workspace + "inversion_data" + separator + "inversion_" + x + ".txt");
+
+            saveInversion(x, im2, listPredictive,
+                    listInversion,
                     workspace + "outputs" + separator + "output_" + DandereUtils.getLexiconValue(lexiConstant, x) + ".jpg");
 
             saveDebug(x, im2, workspace + "debug" + separator + "debug_" + DandereUtils.getLexiconValue(lexiConstant, x) + ".jpg");
@@ -50,16 +60,15 @@ public class Difference implements Runnable {
      *
      * @param ImageNumber
      * @param inputFile the smaller image
-     * @param pImageDataDir we actually don't need predictive, it exists here to only let us know if we need to
+     * @param listInversion we actually don't need predictive, it exists here to only let us know if we need to
      *                      completely redraw a frame or not.
-     * @param inversionData we load the inversions from a textfile to create a list of vectors to recreate the missing parts of an image
+     * @param listInversion we load the inversions from a textfile to create a list of vectors to recreate the missing parts of an image
      * @param outLocation the output location
      * @return
      */
-    private boolean saveInversion(int ImageNumber, Frame inputFile, String pImageDataDir, String inversionData, String outLocation) {
+    private boolean saveInversion(int ImageNumber, Frame inputFile, List<String> listPredictive, List<String> listInversion, String outLocation) {
 
-        List<String> listInversion = DandereUtils.listenText(log, inversionData);
-        List<String> listPredictive = DandereUtils.listenText(log, pImageDataDir);
+
         ArrayList<VectorDisplacement> inversionVectors = new ArrayList<>();
 
         //the size of the image needed is the square root (rougly) im dimensions. Might go over
@@ -76,7 +85,7 @@ public class Difference implements Runnable {
                             Integer.parseInt(listInversion.get(x * 4 + 3))));
         }
 
-        //create an inversion based off the images we were given
+        //Use the vectors read to create a 'differences' image.
         for (int outer = 0; outer < inversionVectors.size(); outer++) {
             for (int x = 0; x < (blockSize + bleed); x++) {
                 for (int y = 0; y < (blockSize + bleed); y++) {
