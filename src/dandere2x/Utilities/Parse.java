@@ -55,10 +55,13 @@ public class Parse {
             System.out.println("");
             returnStatement = false;
         }
-        if (!Parse.dandereLuaValid(dandereDir)) {
-            System.out.println("--Invalid dandereDir--");
-            System.out.println("Your input: " + dandereDir);
-            returnStatement = false;
+
+        if(DandereUtils.isLinux()) {
+            if (!Parse.dandereLuaValid(dandereDir)) {
+                System.out.println("--Invalid dandereDir--");
+                System.out.println("Your input: " + dandereDir);
+                returnStatement = false;
+            }
         }
 
         if (!Parse.workspaceValid(workspace)) {

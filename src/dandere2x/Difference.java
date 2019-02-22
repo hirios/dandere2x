@@ -37,7 +37,7 @@ public class Difference implements Runnable {
     /**
      * Wait for the predictive data and inversion data to exist, then create the 'differences' image
      * that will be upscaled later by waifu2x.
-     *
+     * <p>
      * We do this by using the raw frames outputed from the video.
      */
     public void run() {
@@ -57,18 +57,15 @@ public class Difference implements Runnable {
 
 
     /**
-     *
-     * @param ImageNumber
-     * @param inputFile the smaller image
+     * @param frameNumber
+     * @param inputFile     the smaller image
      * @param listInversion we actually don't need predictive, it exists here to only let us know if we need to
      *                      completely redraw a frame or not.
      * @param listInversion we load the inversions from a textfile to create a list of vectors to recreate the missing parts of an image
-     * @param outLocation the output location
+     * @param outLocation   the output location
      * @return
      */
-    private boolean saveInversion(int ImageNumber, Frame inputFile, List<String> listPredictive, List<String> listInversion, String outLocation) {
-
-
+    private boolean saveInversion(int frameNumber, Frame inputFile, List<String> listPredictive, List<String> listInversion, String outLocation) {
         ArrayList<VectorDisplacement> inversionVectors = new ArrayList<>();
 
         //the size of the image needed is the square root (rougly) im dimensions. Might go over
@@ -77,6 +74,20 @@ public class Difference implements Runnable {
         Frame out = new Frame(size, size);
 
 
+        //in the case where inversionVectors is empty but it is a predictive wrappers.Frame, then
+        //simply output an irrelevent image, as the entire wrappers.Frame is to be copied .
+        if (listInversion.isEmpty() && !listPredictive.isEmpty()) {
+            Frame no = new Frame(1, 1);
+            no.saveFile(outLocation);
+            return true;
+        }
+
+        //in the case where both lists are empty, then we are upscaling a brand new wrappers.Frame, in which case,
+        //otuput the entire image
+        if (listInversion.isEmpty() && listPredictive.isEmpty()) {
+            inputFile.saveFile(outLocation);
+            return true;
+        }
         //for every item in the listInversion, create vector displacements out of them in the same order they were saved
         for (int x = 0; x < listInversion.size() / 4; x++) {
             inversionVectors.add(
@@ -84,6 +95,7 @@ public class Difference implements Runnable {
                             Integer.parseInt(listInversion.get(x * 4 + 2)),
                             Integer.parseInt(listInversion.get(x * 4 + 3))));
         }
+
 
         //Use the vectors read to create a 'differences' image.
         for (int outer = 0; outer < inversionVectors.size(); outer++) {
@@ -98,22 +110,6 @@ public class Difference implements Runnable {
 
                 }
             }
-        }
-
-
-        //in the case where inversionVectors is empty but it is a predictive wrappers.Frame, then
-        //simply output an irrelevent image, as the entire wrappers.Frame is to be copied .
-        if (inversionVectors.isEmpty() && !listPredictive.isEmpty()) {
-            Frame no = new Frame(1, 1);
-            no.saveFile(outLocation);
-            return true;
-        }
-
-        //in the case where both lists are empty, then we are upscaling a brand new wrappers.Frame, in which case,
-        //otuput the entire image
-        if (inversionVectors.isEmpty() && listPredictive.isEmpty()) {
-            inputFile.saveFile(outLocation);
-            return true;
         }
 
 

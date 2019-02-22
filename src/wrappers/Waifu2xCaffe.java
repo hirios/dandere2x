@@ -20,8 +20,12 @@ Once it's all upscaled, do a quick check of what got upscaled, delete them from 
 import dandere2x.Utilities.DandereUtils;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.ArrayList;
+
+import static java.io.File.separator;
 
 public class Waifu2xCaffe {
 
@@ -37,18 +41,18 @@ public class Waifu2xCaffe {
 //        sesh.upscale();
 //    }
 
-    public int lexiConstant = 6;
-    String waifu2xCaffeDir;
-    String outputDir;
-    String upscaledDir;
-    String setting;
-    String noiseLevel;
-    String scaleFactor;
-    ArrayList<Integer> upscaledFrames;
-    int frameCount;
-    Process waifu2xProc = null;
-
-    public Waifu2xCaffe(String waifu2xCaffeDir, String outputDir, String upscaledDir, int frameCount, String setting, String noiseLevel, String scaleFactor) {
+    private int lexiConstant = 6;
+    private String waifu2xCaffeDir;
+    private String outputDir;
+    private String upscaledDir;
+    private String setting;
+    private String noiseLevel;
+    private String scaleFactor;
+    private ArrayList<Integer> upscaledFrames;
+    private int frameCount;
+    private Process waifu2xProc = null;
+    private PrintStream log;
+    public Waifu2xCaffe(String workspace, String waifu2xCaffeDir, String outputDir, String upscaledDir, int frameCount, String setting, String noiseLevel, String scaleFactor) {
         this.waifu2xCaffeDir = waifu2xCaffeDir;
         this.outputDir = outputDir;
         this.upscaledDir = upscaledDir;
@@ -60,6 +64,12 @@ public class Waifu2xCaffe {
 
         for (int x = 1; x < frameCount - 1; x++) {
             upscaledFrames.add(x);
+        }
+
+        try {
+            log = new PrintStream(new File(workspace + "logs" + separator + "waifu2x_logfile.txt"));
+        } catch (FileNotFoundException e) {
+            System.out.println("Fatal Error: Could not create file at " + workspace + "logs" + separator + "waifu2x_logfile.txt");
         }
 
     }
@@ -93,10 +103,11 @@ public class Waifu2xCaffe {
         /**
          * We keep track of how many frames are removed with 'scaledCount', and exit when we're done.
          */
-        while (scaledCount < frameCount - 1) { //todo im being real chief, idk why it's -1 right here.
+        while (scaledCount < frameCount - 4) { //todo im being real chief, idk why it's -4 right here.
             Runtime run = Runtime.getRuntime();
 
             try {
+                log.println("running command "  + upscaleCommand);
                 waifu2xProc = run.exec(upscaleCommand);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -126,7 +137,7 @@ public class Waifu2xCaffe {
                         upscaledFrames.remove(x);
                         x--;
                         scaledCount++;
-                        System.out.println("removed, scaleCoutn is  " + scaledCount);
+                        log.println("removed, scaleCoutn is  " + scaledCount);
                     }
                 }
             }

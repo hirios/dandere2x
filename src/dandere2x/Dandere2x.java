@@ -280,7 +280,7 @@ public class Dandere2x {
 
             //start the process of upscaling every inversion
             log.println("starting waifu2x caffee upscaling...");
-            Waifu2xCaffe waifu = new Waifu2xCaffe(waifu2xCaffeCUIDir, outLocation, upscaledLocation, frameCount, processType, noiseLevel, "2");
+            Waifu2xCaffe waifu = new Waifu2xCaffe(workspace, waifu2xCaffeCUIDir, outLocation, upscaledLocation, frameCount, processType, noiseLevel, "2");
             Thread waifuxThread = new Thread() {
                 public void run() {
                     waifu.upscale();
@@ -296,56 +296,6 @@ public class Dandere2x {
         log.println("dandere2x finished correctly...");
     }
 
-
-    private void startThreadedProcessesWindows() throws IOException, InterruptedException {
-
-        //start the process for dandere2x cpp side to upscale frames
-        ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/C", "start", dandere2xCppDir,
-                workspace, frameCount + "", blockSize + "", tolerance + "", stepSize + "");
-        System.out.println(dandere2xCppDir + " " +
-                workspace + " " + frameCount + "");
-
-        dandere2xCppProc = builder.start();
-
-
-        //start the process for create inversions from dandere2x frames
-        Thread t1 = new Thread() {
-            public void run() {
-                Difference inv = new Difference(blockSize, 2, workspace, frameCount);
-                inv.run();
-            }
-        };
-        t1.start();
-
-
-        //start the process for merging upscaled frames
-        Thread t2 = new Thread() {
-            public void run() {
-                Merge dif = new Merge(blockSize, 2, workspace, frameCount);
-                dif.run();
-            }
-        };
-        t2.start();
-
-        //manually upscale merged_1.jpg (the basis frame)
-        Waifu2xCaffe.upscaleFile(waifu2xCaffeCUIDir, fileLocation + "frame1.jpg",
-                mergedDir + "merged_" + 1 + ".jpg", processType, noiseLevel, "2");
-
-
-        //start the process of upscaling every inversion
-        Waifu2xCaffe waifu = new Waifu2xCaffe(waifu2xCaffeCUIDir, outLocation, upscaledLocation, frameCount, processType, noiseLevel, "2");
-        Thread t3 = new Thread() {
-            public void run() {
-                waifu.upscale();
-            }
-        };
-        t3.start();
-
-        t1.join();
-        t2.join();
-        t3.join();
-        while (dandere2xCppProc.isAlive()) ;
-    }
 
     /*
     This is only for linux functions. This function will create a waifu2x_script.sh which the user is to

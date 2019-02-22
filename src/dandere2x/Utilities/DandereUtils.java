@@ -122,12 +122,19 @@ public class DandereUtils {
      * Continue to cycle within a time limit. Currently time limit is 10000 * 100 = 100 seconds.
      * Returns image when it is loaded. If not, keep waiting.
      *
+     * There's a very odd error / work around I have working here. There were a few cases
+     * in which the listenText function would begin to read the textfile before the dandere2xcpp file
+     * began finish writing to the text file...
+     *
+     * to mitigate this, we read it twice at two different times. If the lengths of the files difer,
+     * do it again.
+     *
      * @return baseImage if successfully load image.
      */
     public static List listenText(PrintStream log, String input) {
 
         boolean dneErrorShown = false;
-        Frame FrameLoad = null;
+        List initial;
         int timeLimit = 10000;
 
         for (long x = 0; x < timeLimit; x++) {
@@ -138,8 +145,16 @@ public class DandereUtils {
                 }
                 systemWait(100);
                 continue;
-            } else
-                break;
+            } else{
+                initial = readListInFile(input);
+                if(readListInFile(input).size() != initial.size()) {
+                    log.println("LIST NOT THE SAME SIZE!! CAUGHT THE FUCKER");
+                    continue;
+                }
+                else
+                    break;
+            }
+
         }
 
         return readListInFile(input);
@@ -231,8 +246,7 @@ public class DandereUtils {
         Process process = null;
         Runtime run = Runtime.getRuntime();
 
-        String command;// = "cmd.exe /C start ffmpeg  -ss " + timeFrame + " -i " + fileName + " -qscale:v 2 " +
-        //" -t " + duration + " " + workspace + "inputs" + separator + "frame%01d.jpg";
+        String command;
 
         if (isLinux()) {
             log.println("extracting frames on linux...");
