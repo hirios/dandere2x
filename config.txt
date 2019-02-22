@@ -1,0 +1,29 @@
+#Mon Feb 18 11:48:41 PST 2019
+
+#waifu2xstuff. If on linux, you dont need this
+waifu2xCaffeCUIDir=C:\\Users\\windwoz\\Desktop\\waifu2x-caffe\\waifu2x-caffe-cui.exe
+
+#file locations
+workspace=/home/linux/Videos/Your_Name/ynvidtest/
+fileDir=/home/linux/Videos/Your_Name/yn.mkv
+dandere2xCppDir=/home/linux/Documents/dandere2x-master/dandere2x_cpp_module/dist/Debug/GNU-Linux/dandere2x_cpp_module
+
+#session settings
+timeFrame=00:04:01
+duration=00:00:02
+audioLayer=0:1
+frameRate=24
+width=1920
+height=1080
+
+
+#customization
+blockSize=30
+tolerance=15.5
+stepSize=4
+noiseLevel=3
+processType=cudnn
+bleed=2
+
+#ignore this if ur on windows
+dandereDir=/home/linux/Documents/waifu2x/dandere.lua
