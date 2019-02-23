@@ -36,7 +36,7 @@ public class DandereUtils {
         return lines;
     }
 
-    public static void systemWait(int n) {
+    public static void threadSleep(int n) {
         try {
 
             Thread.sleep(n);
@@ -86,7 +86,7 @@ public class DandereUtils {
                     log.println("Could not find file " + baseName + ".. waiting...");
                     dneErrorShown = true;
                 }
-                systemWait(100);
+                threadSleep(100);
                 continue;
             }
 
@@ -94,15 +94,15 @@ public class DandereUtils {
                 FrameLoad = new Frame(baseName);
             } catch (NullPointerException e) {
                 log.println("null pointer exception in image");
-                systemWait(100);
+                threadSleep(100);
                 continue;
             } catch (IllegalArgumentException e) {
                 log.println("error reading png on image, waiting - ");
-                systemWait(100);
+                threadSleep(100);
                 continue;
             } catch (IndexOutOfBoundsException e) {
                 log.println("out of bounds reading png on image, waiting - ");
-                systemWait(100);
+                threadSleep(100);
                 continue;
             }
 
@@ -143,7 +143,7 @@ public class DandereUtils {
                     log.println("Could not find file " + input + ".. waiting...");
                     dneErrorShown = true;
                 }
-                systemWait(100);
+                threadSleep(100);
                 continue;
             } else{
                 initial = readListInFile(input);

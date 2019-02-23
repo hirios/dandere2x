@@ -16,21 +16,9 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dandere2x/Merge.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="30" selection-start-line="30" selection-end-line="34" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/wrappers/Frame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3072">
+            <state relative-caret-position="2856">
               <caret line="128" selection-start-line="128" selection-end-line="128" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -42,7 +30,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/wrappers/Waifu2xCaffe.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
+            <state relative-caret-position="2424">
               <caret line="109" column="64" selection-start-line="109" selection-start-column="64" selection-end-line="109" selection-end-column="64" />
             </state>
           </provider>
@@ -51,8 +39,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+            <state relative-caret-position="504">
+              <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
             </state>
           </provider>
         </entry>
@@ -60,8 +48,22 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/dandere2x/Dandere2x.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="960">
-              <caret line="298" selection-start-line="298" selection-end-line="298" />
+            <state relative-caret-position="-1093">
+              <caret line="152" column="21" selection-start-line="152" selection-start-column="13" selection-end-line="152" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#5180#5710#0" expanded="true" />
+                <element signature="e#5709#5710#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/dandere2x/Utilities/Dandere2xCUI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="666">
+              <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -70,9 +72,18 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.base/java/io/File.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="275" selection-start-line="275" selection-end-line="275" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/dandere2x/Utilities/Parse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
+            <state relative-caret-position="1224">
               <caret line="52" column="17" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -85,11 +96,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="6" column="61" selection-start-line="6" selection-start-column="61" selection-end-line="6" selection-end-column="61" />
+            <state relative-caret-position="384">
+              <caret line="16" column="79" lean-forward="true" selection-start-line="16" selection-start-column="79" selection-end-line="16" selection-end-column="79" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -100,11 +111,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/dandere2x/Utilities/DandereUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="249" selection-start-line="249" selection-end-line="249" />
+            <state relative-caret-position="203">
+              <caret line="38" column="34" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1557#1565#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -113,7 +123,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/dandere2x/Difference.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1632">
+            <state relative-caret-position="594">
               <caret line="68" column="8" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -145,11 +155,16 @@
       <find>this.</find>
       <find>vectorDisplacements</find>
       <find>waifu2x</find>
+      <find>systemWait</find>
+      <find>prop.</find>
+      <find>stepSize</find>
     </findStrings>
     <replaceStrings>
       <replace>Image</replace>
       <replace>String</replace>
       <replace>inversionVectors</replace>
+      <replace>this.prop</replace>
+      <replace>this.prop.</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -169,20 +184,21 @@
         <option value="$PROJECT_DIR$/src/dandere2x/Utilities/VectorDisplacement.java" />
         <option value="$PROJECT_DIR$/src/dandere2x/Merge.java" />
         <option value="$PROJECT_DIR$/src/dandere2x/Utilities/Parse.java" />
-        <option value="$PROJECT_DIR$/config.txt" />
         <option value="$PROJECT_DIR$/src/dandere2x/Difference.java" />
-        <option value="$PROJECT_DIR$/src/dandere2x/Utilities/DandereUtils.java" />
-        <option value="$PROJECT_DIR$/src/dandere2x/Dandere2x.java" />
         <option value="$PROJECT_DIR$/src/wrappers/Waifu2xCaffe.java" />
         <option value="$PROJECT_DIR$/src/main.java" />
+        <option value="$PROJECT_DIR$/src/dandere2x/Utilities/DandereUtils.java" />
+        <option value="$PROJECT_DIR$/src/dandere2x/Dandere2x.java" />
+        <option value="$PROJECT_DIR$/config.txt" />
+        <option value="$PROJECT_DIR$/src/dandere2x/Utilities/Dandere2xCUI.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="20" />
-    <option name="y" value="-16" />
-    <option name="width" value="1680" />
-    <option name="height" value="1020" />
+    <option name="x" value="371" />
+    <option name="y" value="-15" />
+    <option name="width" value="1146" />
+    <option name="height" value="1023" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -190,52 +206,52 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="dandere2x-master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dandere2x-master" type="462c0819:PsiDirectoryNode" />
+              <item name="dandere2x" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dandere2x" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="dandere2x-master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dandere2x-master" type="462c0819:PsiDirectoryNode" />
+              <item name="dandere2x" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dandere2x" type="462c0819:PsiDirectoryNode" />
               <item name="out" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="dandere2x-master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dandere2x-master" type="462c0819:PsiDirectoryNode" />
+              <item name="dandere2x" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dandere2x" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
+              <item name="artifacts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="dandere2x" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dandere2x" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="dandere2x-master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dandere2x-master" type="462c0819:PsiDirectoryNode" />
+              <item name="dandere2x" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dandere2x" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="dandere2x" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="dandere2x-master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dandere2x-master" type="462c0819:PsiDirectoryNode" />
+              <item name="dandere2x" type="b2602c69:ProjectViewProjectNode" />
+              <item name="dandere2x" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="dandere2x" type="462c0819:PsiDirectoryNode" />
               <item name="Utilities" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="dandere2x-master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="dandere2x-master" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="wrappers" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550875064502" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1550960663077" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
@@ -310,8 +326,8 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12100213" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7202898" visible="true" weight="0.18496802" />
+      <window_info id="Structure" order="1" sideWeight="0.27971014" side_tool="true" visible="true" weight="0.18496802" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -354,40 +370,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dandere2x/Difference.java">
+    <entry file="file://$PROJECT_DIR$/out/main.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1632">
-          <caret line="68" column="8" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dandere2x/Utilities/DandereUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="249" selection-start-line="249" selection-end-line="249" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1557#1565#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/wrappers/Frame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3072">
-          <caret line="128" selection-start-line="128" selection-end-line="128" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state>
+          <caret lean-forward="true" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/dandere2x/Merge.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
+        <state relative-caret-position="456">
           <caret line="30" selection-start-line="30" selection-end-line="34" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -395,19 +387,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dandere2x/Dandere2x.java">
+    <entry file="file://$PROJECT_DIR$/src/wrappers/Frame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="298" selection-start-line="298" selection-end-line="298" />
+        <state relative-caret-position="2856">
+          <caret line="128" selection-start-line="128" selection-end-line="128" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/wrappers/Waifu2xCaffe.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2424">
+          <caret line="109" column="64" selection-start-line="109" selection-start-column="64" selection-end-line="109" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/dandere2x/Utilities/Parse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
+        <state relative-caret-position="1224">
           <caret line="52" column="17" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -419,31 +418,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/wrappers/Waifu2xCaffe.java">
+    <entry file="jar://C:/Program Files/Java/jdk-11.0.1/lib/src.zip!/java.base/java/io/File.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="109" column="64" selection-start-line="109" selection-start-column="64" selection-end-line="109" selection-end-column="64" />
+        <state relative-caret-position="221">
+          <caret line="275" selection-start-line="275" selection-end-line="275" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config.txt">
+    <entry file="file://$PROJECT_DIR$/src/dandere2x/Difference.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/out/main.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
+        <state relative-caret-position="594">
+          <caret line="68" column="8" selection-start-line="68" selection-start-column="8" selection-end-line="68" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="6" column="61" selection-start-line="6" selection-start-column="61" selection-end-line="6" selection-end-column="61" />
+        <state relative-caret-position="384">
+          <caret line="16" column="79" lean-forward="true" selection-start-line="16" selection-start-column="79" selection-end-line="16" selection-end-column="79" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dandere2x/Utilities/DandereUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="38" column="34" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dandere2x/Dandere2x.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1093">
+          <caret line="152" column="21" selection-start-line="152" selection-start-column="13" selection-end-line="152" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5180#5710#0" expanded="true" />
+            <element signature="e#5709#5710#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dandere2x/Utilities/Dandere2xCUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="666">
+          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

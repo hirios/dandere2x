@@ -1,5 +1,6 @@
 package dandere2x;
 
+import dandere2x.Utilities.Dandere2xCUI;
 import dandere2x.Utilities.DandereUtils;
 import dandere2x.Utilities.Parse;
 import wrappers.Waifu2xCaffe;
@@ -18,8 +19,6 @@ import static java.lang.System.exit;
 import static java.lang.System.out;
 
 public class Dandere2x {
-
-
 
     //directories
     private String dandereDir;
@@ -55,52 +54,11 @@ public class Dandere2x {
     private Process dandere2xCppProc;
     private PrintStream log;
 
-    //code from https://www.mkyong.com/java/java-properties-file-examples/
-    //load settings from a settings.txt file
+
     public Dandere2x(String settingsDir) {
 
-        prop = new Properties();
-        InputStream input = null;
-
-        try {
-            input = new FileInputStream(settingsDir);
-            // load a properties file
-            prop.load(input);
-
-            //directories
-            this.dandereDir = prop.getProperty("dandereDir");
-            this.workspace = prop.getProperty("workspace");
-            this.fileDir = prop.getProperty("fileDir");
-            this.dandere2xCppDir = prop.getProperty("dandere2xCppDir");
-            this.waifu2xCaffeCUIDir = prop.getProperty("waifu2xCaffeCUIDir");
-
-            //session settings
-            this.timeFrame = prop.getProperty("timeFrame");
-            this.duration = prop.getProperty("duration");
-            this.audioLayer = prop.getProperty("audioLayer");
-            this.frameRate = Integer.parseInt(prop.getProperty("frameRate"));
-
-
-            //custom settings
-            this.blockSize = Integer.parseInt(prop.getProperty("blockSize"));
-            this.stepSize = Integer.parseInt(prop.getProperty("stepSize"));
-            this.tolerance = Double.parseDouble(prop.getProperty("tolerance"));
-            this.noiseLevel = prop.getProperty("noiseLevel");
-            this.processType = prop.getProperty("processType");
-            this.bleed = Integer.parseInt(prop.getProperty("bleed"));
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
+        this.loadProperties(settingsDir);
+        this.assignProperties();
         createDirs();
 
         try {
@@ -112,16 +70,16 @@ public class Dandere2x {
     }
 
     public void start() throws IOException, InterruptedException {
+
         log.println("extracting frames");
         DandereUtils.extractFrames(log, workspace, timeFrame, fileDir, duration);
+
         log.println("extracting audio");
         DandereUtils.extractAudio(log, workspace, timeFrame, duration, fileDir, audioLayer);
-
 
         frameCount = DandereUtils.getSecondsFromDuration(duration) * frameRate;
 
         log.println("framecount: " + frameCount);
-
 
         printDandereSession();
 
@@ -142,6 +100,64 @@ public class Dandere2x {
         return Parse.validProperties(this.prop);
     }
 
+    /**
+     * loads the properties file and cleans some of the inputs
+     *
+     * cleaning is defined by if it is says [this], replace it with
+     * the absolute path of the jar folder. This exists for portability.
+     */
+    private void loadProperties(String settingsDir) {
+
+        this.prop = new Properties();
+        try { prop.load(new FileInputStream(settingsDir));
+        } catch (IOException e) {
+            System.out.println("config file not found");
+            e.printStackTrace();
+            exit(1);
+        }
+
+        String dir = null;
+        try {
+            dir = new File(".").getCanonicalPath() + separator;
+        } catch (IOException e) {
+            e.printStackTrace();
+            exit(1);
+        }
+
+        Enumeration keys = prop.keys();
+        while (keys.hasMoreElements()) {
+            String key = (String) keys.nextElement();
+            if (prop.getProperty(key).contains("[this]"))
+                prop.setProperty(key, prop.getProperty(key).replace("[this]", dir));
+        }
+
+    }
+
+    private void assignProperties() {
+
+        //directories
+        this.dandereDir = this.prop.getProperty("dandereDir");
+        this.workspace = this.prop.getProperty("workspace");
+        this.fileDir = this.prop.getProperty("fileDir");
+        this.dandere2xCppDir = this.prop.getProperty("dandere2xCppDir");
+        this.waifu2xCaffeCUIDir = this.prop.getProperty("waifu2xCaffeCUIDir");
+
+        //session settings
+        this.timeFrame = this.prop.getProperty("timeFrame");
+        this.duration = this.prop.getProperty("duration");
+        this.audioLayer = this.prop.getProperty("audioLayer");
+        this.frameRate = Integer.parseInt(this.prop.getProperty("frameRate"));
+
+
+        //custom settings
+        this.stepSize = Integer.parseInt(this.prop.getProperty("stepSize"));
+        this.blockSize = Integer.parseInt(this.prop.getProperty("blockSize"));
+        this.tolerance = Double.parseDouble(this.prop.getProperty("tolerance"));
+        this.noiseLevel = this.prop.getProperty("noiseLevel");
+        this.processType = this.prop.getProperty("processType");
+        this.bleed = Integer.parseInt(this.prop.getProperty("bleed"));
+
+    }
 
     //if program exits and dandere2xCppProc is still running, close that up
     private void shutdownHook() {
@@ -159,7 +175,6 @@ public class Dandere2x {
     }
 
 
-
     //setup folders in workspace
     private void createDirs() {
         fileLocation = workspace + "inputs" + separator;
@@ -171,7 +186,7 @@ public class Dandere2x {
         debugDir = workspace + "debug" + separator;
         logDir = workspace + "logs" + separator;
 
-        if(!new File(workspace).exists())
+        if (!new File(workspace).exists())
             new File(workspace).mkdir();
 
 
@@ -226,7 +241,6 @@ public class Dandere2x {
 
         log.println("starting threaded processes...");
 
-
         /**
          * IF we're on linux, create the script for the user to run. The process builder command
          * to start waifu2x-cpp is also different than that of windows.
@@ -239,10 +253,18 @@ public class Dandere2x {
         } else {
             log.println("using windows...");
             dandere2xPB = new ProcessBuilder("cmd.exe", "/C", "start", dandere2xCppDir,
-                    workspace, frameCount + "", blockSize + "", tolerance + "", stepSize + ""); }
+                    workspace, frameCount + "", blockSize + "", tolerance + "", stepSize + "");
+        }
 
         log.println("starting cpp process" + dandere2xPB.command());
         dandere2xCppProc = dandere2xPB.start();
+
+        Thread dandereCUI = new Thread() {
+            public void run() {
+                Dandere2xCUI cui = new Dandere2xCUI(mergedDir,frameCount);
+                cui.run();
+            }
+        };
 
         Thread inversionThread = new Thread() {
             public void run() {
@@ -258,6 +280,9 @@ public class Dandere2x {
             }
         };
 
+
+        log.println("Starting cui thread");
+        dandereCUI.start();
 
         log.println("starting merge thread...");
         mergeThread.start();
@@ -358,7 +383,6 @@ public class Dandere2x {
                 + workspace + "sound.mp4\n");
 
 
-
         //this inner if statement creates a list of files for waifu2x to upscale. Waifu2x needs a list to upscale
         //for bulk upscaling.
         for (int x = 1; x < frameCount; x++)
@@ -372,7 +396,9 @@ public class Dandere2x {
             writer1.close();
             writer2.write(commands.toString());
             writer2.close();
-        } catch (IOException e) { log.println("could not write commands or frames correctly"); }
+        } catch (IOException e) {
+            log.println("could not write commands or frames correctly");
+        }
     }
 
 }

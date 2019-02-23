@@ -6,11 +6,11 @@ waifu2xCaffeCUIDir=C:\\Users\\windwoz\\Desktop\\waifu2x-caffe\\waifu2x-caffe-cui
 #file locations
 workspace=C:\\Users\\windwoz\\Desktop\\newrun\\
 fileDir=C:\\Video\\yn\\yn.mkv
-dandere2xCppDir=C:\\Users\\windwoz\\Desktop\\AllInOne\\dandereprealpha\\danderecppmodule.exe
+dandere2xCppDir=C:\\Users\\windwoz\\Desktop\\AllInOne\\dandere2x\\danderecppmodule.exe
 
 #session settings
-timeFrame=01:17:03
-duration=00:00:35
+timeFrame=00:04:54
+duration=00:00:10
 audioLayer=0:1
 frameRate=24
 width=1920
@@ -19,7 +19,7 @@ height=1080
 
 #customization
 blockSize=30
-tolerance=15.5
+tolerance=16
 stepSize=4
 noiseLevel=3
 processType=cudnn
