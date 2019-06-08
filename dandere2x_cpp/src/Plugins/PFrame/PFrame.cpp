@@ -75,6 +75,20 @@ void PFrame::save() {
 }
 
 
+
+//print out preformance (for development testing)
+
+void PFrame::print_stats() {
+    int max_blocks_possible = (this->height * this->width) / (this->block_size * this->block_size);
+
+    std::cout << "stats: blocks size:  " <<  blocks.size() << " max possible: " << max_blocks_possible  << std::endl;
+    std::cout << "ratio:   " <<  ((double) blocks.size())  /  (double) max_blocks_possible  << std::endl;
+    std::cout << "pixels needed:  " <<  (max_blocks_possible - blocks.size())*(block_size+2)*(block_size+2)  << std::endl;
+
+}
+
+/** Private Functions */
+
 void PFrame::create_difference() {
     dif = std::make_shared<Differences>(blocks, block_size, image2);
     dif->run();

@@ -62,6 +62,8 @@ public:
 
     void save();
 
+    void print_stats();
+
 private:
     int step_size;
     int max_checks;

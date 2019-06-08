@@ -66,6 +66,7 @@ void driver_difference(string workspace, int resume_count, int frame_count,
 
         string correction_file =
                 workspace + separator() + "correction_data" + separator() + "correction_" + to_string(resume_count) + ".txt";
+
         string fade_file =
                 workspace + separator() + "fade_data" + separator() + "fade_" + to_string(resume_count) + ".txt";
 
