@@ -133,7 +133,7 @@ class Dandere2x:
         merge_thread.start()
         difference_thread.start()
         dandere2xcpp_thread.start()
-        status_thread.start()
+        #status_thread.start()
         compress_frames_thread.start()
 
         compress_frames_thread.join()
@@ -141,7 +141,7 @@ class Dandere2x:
         dandere2xcpp_thread.join()
         difference_thread.join()
         waifu2x.join()
-        status_thread.join()
+        #status_thread.join()
 
         self.context.logger.info("Threaded Processes Finished succcesfully")
 

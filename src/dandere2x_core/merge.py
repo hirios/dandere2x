@@ -49,6 +49,9 @@ def make_merge_image(context: Context, frame_inversion: Frame, frame_base: Frame
         out_image.save_image(output_location)
         return
 
+    block_size = int(list_predictive.pop(0))
+    block_size = int(list_differences.pop(0))
+
     # load list into vector displacements
     for x in range(int(len(list_differences) / 4)):
         difference_vectors.append(DisplacementVector(int(list_differences[x * 4 + 0]),

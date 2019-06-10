@@ -24,6 +24,8 @@ def make_difference_image(context: Context, raw_frame, list_difference, list_pre
     block_size = context.block_size
     bleed = context.bleed
 
+
+
     # first make a 'bleeded' version of input_frame
     # so we can preform numpy calculations w.o having to catch
     bleed_frame = raw_frame.create_bleeded_image(buffer)
@@ -45,6 +47,10 @@ def make_difference_image(context: Context, raw_frame, list_difference, list_pre
         out_image.copy_image(raw_frame)
         out_image.save_image(out_location)
         return
+
+    print(list_difference[0])
+    block_size = int(list_difference.pop(0))
+
 
     # turn the list of differences into a list of vectors
     for x in range(int(len(list_difference) / 4)):
@@ -87,6 +93,15 @@ def debug(block_size, frame_base, list_predictive, list_differences, output_loca
         out_image.copy_image(frame_base)
         out_image.save_image(output_location)
         return
+
+
+    print('list dif val')
+    val = int(list_predictive[0])
+    list_predictive.pop()
+    print(val)
+    print(len(list_predictive))
+    print(list_predictive[0])
+    block_size = int(val)
 
     # load list into vector displacements
     for x in range(int(len(list_predictive) / 4)):

@@ -31,6 +31,7 @@ void Differences::write(std::string output_file) {
     //create a temp file
     std::ofstream out(output_file + ".temp");
 
+    out << block_size << std::endl;
     //write vectors to temp file
     for (int x = 0; x < difference_blocks->list.size(); x++) {
         out << difference_blocks->list[x].x_start << "\n" <<

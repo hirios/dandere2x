@@ -171,6 +171,9 @@ void PFrame::match_block(int x, int y) {
 void PFrame::write(std::string output_file) {
 
     std::ofstream out(output_file + ".temp");
+
+    out << block_size << std::endl;
+
     for (int x = 0; x < blocks.size(); x++) {
         out <<
             blocks[x].x_start << "\n" <<

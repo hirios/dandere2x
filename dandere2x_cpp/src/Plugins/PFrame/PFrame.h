@@ -64,6 +64,12 @@ public:
 
     void print_stats();
 
+    int get_pixels(){
+        int max_blocks_possible = (this->height * this->width) / (this->block_size * this->block_size);
+
+        return (max_blocks_possible - blocks.size())*(block_size+2)*(block_size+2);
+    }
+
 private:
     int step_size;
     int max_checks;
