@@ -170,10 +170,13 @@ class Dandere2x:
 
         self.context.logger.info("Starting Threaded Processes..")
 
+        dandere2xcpp_thread.start()
+
+        time.sleep(19)
+
         waifu2x.start()
         merge_thread.start()
         difference_thread.start()
-        dandere2xcpp_thread.start()
         status_thread.start()
 
         merge_thread.join()

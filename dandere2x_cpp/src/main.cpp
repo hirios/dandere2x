@@ -8,40 +8,19 @@
  * - Debug function for people to test individual features.
  */
 
+#include <stdio.h>
 
 
 void benchmark(){
-    #include "Image/Image.h"
-    #include "Plugins/PFrame/PFrame.h"
 
-    shared_ptr<Image> f1 = make_shared<Image>("C:\\Users\\windwoz\\Desktop\\workspace\\violetfade\\inputs\\frame30.jpg");
-//    Image fake = Image("C:\\Users\\windwoz\\Desktop\\gradient\\fake.png");
-    shared_ptr<Image> f2 = make_shared<Image>("C:\\Users\\windwoz\\Desktop\\workspace\\violetfade\\inputs\\frame31.jpg");
-    shared_ptr<Image> compressed = make_shared<Image>("C:\\Users\\windwoz\\Desktop\\workspace\\violetfade\\compressed\\31.jpg");
-
-
-    cout << ImageUtils::mse_image(*f1, *f2) << endl;
-
-    Fade f = Fade(f1, f2, compressed, 30, "C:\\Users\\windwoz\\Desktop\\gradient\\output.txt");
-
-    f.run();
-
-    cout << "Predicted whole" << std::endl;
-    cout << ImageUtils::mse_image(*f1, *f2) << endl;
-
-    cout << "compressed whole" << std::endl;
-    cout << ImageUtils::mse_image(*compressed, *f2) << endl;
-
-
-    DebugImage debug = DebugImage::create_debug_from_image(*f1);
-    debug.save("C:\\Users\\windwoz\\Desktop\\workspace\\violetfade\\31_fake_predict.png");
-
+    std::cout << rename("C:\\Users\\windwoz\\Desktop\\workspace\\cygwin_test\\correction_data\\correction_16.txt.temp",
+            "C:\\Users\\windwoz\\Desktop\\workspace\\cygwin_test\\correction_data\\correction_16.txt") << endl;
 }
 
 int main(int argc, char **argv) {
     //benchmark();
-//
-    bool debug = false; //debug flag
+
+    bool debug = false; //debug flag. Set to true when doing a debugging run.
 
     string workspace = "C:\\Users\\windwoz\\Desktop\\workspace\\violetfade\\";
     int frame_count = 120;

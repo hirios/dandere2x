@@ -14,18 +14,15 @@ class DifferenceBlocks {
 
 public:
     int size;
+
     int xMax;
-    int yMax;
+    int yMax; //yMax is never used, but left in for readability.
+
     int xCount;
     int yCount;
-    int xDimension;
-    int yDimension;
     std::vector<Block> list = std::vector<Block>();
 
-
     DifferenceBlocks(int xDimension, int yDimension, int size) {
-        this->xDimension = xDimension;
-        this->yDimension = yDimension;
         this->xMax = xDimension / size;
         this->yMax = yDimension / size;
         this->xCount = 0;
@@ -33,12 +30,13 @@ public:
         this->size = size;
     }
 
+    // Fill in a grid going left to right, then
+    // goto the next row whenever we finish a row.
     void add(int x, int y) {
         size++;
         if (xCount + 1 < xMax) {
             xCount++;
             list.push_back(Block(x, y, xCount, yCount, 9999));
-            //xCount++;
         } else {
             yCount++;
             xCount = 0;

@@ -136,6 +136,9 @@ def difference_loop(context, start_frame):
         debug(block_size, f1, prediction_data, difference_data, output_file)
 
 
+# we need to delete previously 'differenced' files
+# or else dandere2x might use the files from the previous
+# session
 def difference_loop_resume(context):
     # load variables from context
     workspace = context.workspace

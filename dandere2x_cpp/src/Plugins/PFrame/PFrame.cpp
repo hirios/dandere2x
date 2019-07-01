@@ -118,7 +118,6 @@ void PFrame::match_all_blocks() {
  * @param y The y-coordinate of an image
  */
 void PFrame::match_block(int x, int y) {
-
     // Using the compressed image, determine a good measure of the minimum MSE required for the matched to have.
     double min_mse = ImageUtils::mse(*image2, *image2_compressed,
                                      x * block_size, y * block_size,
@@ -157,12 +156,13 @@ void PFrame::match_block(int x, int y) {
 void PFrame::write(std::string output_file) {
 
     std::ofstream out(output_file + ".temp");
+
     for (int x = 0; x < blocks.size(); x++) {
         out <<
-            blocks[x].x_start << "\n" <<
-            blocks[x].y_start << "\n" <<
-            blocks[x].x_end << "\n" <<
-            blocks[x].y_end << std::endl;
+              blocks[x].x_start << "\n" <<
+              blocks[x].y_start << "\n" <<
+              blocks[x].x_end   << "\n" <<
+              blocks[x].y_end   << std::endl;
     }
     out.close();
 

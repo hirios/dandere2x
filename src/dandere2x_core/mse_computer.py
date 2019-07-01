@@ -2,6 +2,9 @@ from context import Context
 from wrappers.frame import Frame
 
 
+#todo this file is named incorrectly
+# - need a resume feature
+
 def compress_frames(context: Context):
     inputs_dir = context.input_frames_dir
     frame_count = context.frame_count

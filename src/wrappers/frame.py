@@ -165,7 +165,11 @@ class Frame:
     # where Dandere2x needs to just load an image and save it somewhere else,
     # Dandere2x needs to copy the image using numpy to maintain visual aesthetic.
 
+
+    # found issue with method - resuming not working as intended.
+
     def copy_image(self, frame_other):
+
         copy_from(frame_other.frame, self.frame, (0, 0), (0, 0),
                   (frame_other.frame.shape[1], frame_other.frame[1].shape[0]))
 

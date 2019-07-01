@@ -34,9 +34,9 @@ void Differences::write(std::string output_file) {
     //write vectors to temp file
     for (int x = 0; x < difference_blocks->list.size(); x++) {
         out << difference_blocks->list[x].x_start << "\n" <<
-            difference_blocks->list[x].y_start << "\n" <<
-            difference_blocks->list[x].x_end << "\n" <<
-            difference_blocks->list[x].y_end << std::endl;
+               difference_blocks->list[x].y_start << "\n" <<
+               difference_blocks->list[x].x_end << "\n" <<
+               difference_blocks->list[x].y_end << std::endl;
     }
     out.close();
     rename((output_file + ".temp").c_str(), output_file.c_str());
