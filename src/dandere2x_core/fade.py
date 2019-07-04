@@ -2,6 +2,7 @@ import logging
 from dataclasses import dataclass
 
 from wrappers.frame import Frame
+import numpy as np
 
 
 # A simple struct to hold the data to produce a fade.
@@ -40,5 +41,21 @@ def fade_image(context, block_size, frame_base: Frame, list_correction: list):
                              vector.y * scale_factor,
                              block_size * scale_factor,
                              vector.scalar)
+
+        out_image.frame = np.clip(out_image.frame, 0, 255)
+
+    copy = Frame()
+
+    copy.create_new(out_image.width, out_image.height)
+
+    copy.copy_image(out_image)
+
+
+    print(np.amax(out_image.frame))
+    # # dev notes - why 252? Artifacts still appear when it's at 255. Perhaps Encoding problem?
+    #out_image.frame = np.clip(out_image.frame, 0, 255)
+
+    print("difference: ")
+    print(out_image.mean(copy))
 
     return out_image

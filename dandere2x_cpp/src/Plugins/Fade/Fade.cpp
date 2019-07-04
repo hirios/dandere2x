@@ -121,9 +121,9 @@ void Fade::draw_over(int x, int y, int scalar) {
 }
 
 int Fade::bound_integer(int min, int max, int val) {
-    if (val < min)
+    if (val <= min)
         return min;
-    if (val > max)
+    if (val >= max)
         return max;
 
     return val;

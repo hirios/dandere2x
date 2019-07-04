@@ -194,10 +194,24 @@ class Frame:
 
     def fade_block(self, this_x, this_y, block_size, scalar):
 
-        copy_from_fade(self.frame, self.frame,
+
+        temp = numpy.copy(self.frame).astype(int)
+
+        copy_from_fade(temp, temp,
                        (this_y, this_x), (this_y, this_x),
                        (this_y + block_size - 1, this_x + block_size - 1), scalar)
 
+<<<<<<< Updated upstream
+=======
+        temp = np.clip(temp, 0, 255).astype(np.uint8)
+
+        self.frame = temp
+
+
+
+
+
+>>>>>>> Stashed changes
     # For the sake of code maintance, do the error checking to ensure numpy copy will work here.
     # Numpy won't give detailed errors, so this is my custom errors for debugging!
 

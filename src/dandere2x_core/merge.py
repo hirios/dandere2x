@@ -79,6 +79,9 @@ def make_merge_image(context: Context, frame_inversion: Frame, frame_base: Frame
     out_image = fade_image(context, block_size, out_image, list_fade)
     out_image = correct_image(context, 2, out_image, list_corrections)
 
+    import numpy as np
+    out_image.frame = np.clip(out_image.frame, 0, 255)
+
     out_image.save_image(output_location)
 
 
